@@ -1,15 +1,15 @@
 package com.example.mvpproject
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.mvpproject.databinding.ActivityMainBinding
-import java.lang.IllegalArgumentException
+import moxy.MvpAppCompatActivity
+import moxy.ktx.moxyPresenter
 
-class MainActivity : AppCompatActivity(), MainView {
+class MainActivity : MvpAppCompatActivity(), MainView {
 
     private lateinit var binding: ActivityMainBinding
-    private val presenter = MainPresenter(this)
+    private val presenter by moxyPresenter { MainPresenter(CountersModel()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

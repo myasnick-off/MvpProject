@@ -1,22 +1,22 @@
 package com.example.mvpproject
 
-class MainPresenter(val view: MainView) {
+import moxy.MvpPresenter
 
-    private val model = CountersModel()
+class MainPresenter(private val model: CountersModel): MvpPresenter<MainView>() {
 
     fun counterClick(id: ButtonId) {
         when (id) {
             ButtonId.BUTTON_ONE -> {
                 val nextValue = model.next(0)
-                view.setButtonOneText(nextValue.toString())
+                viewState.setButtonOneText(nextValue.toString())
             }
             ButtonId.BUTTON_TWO -> {
                 val nextValue = model.next(1)
-                view.setButtonTwoText(nextValue.toString())
+                viewState.setButtonTwoText(nextValue.toString())
             }
             ButtonId.BUTTON_THREE -> {
                 val nextValue = model.next(2)
-                view.setButtonThreeText(nextValue.toString())
+                viewState.setButtonThreeText(nextValue.toString())
             }
         }
     }
